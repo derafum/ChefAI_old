@@ -7,7 +7,7 @@ import requests
 class ScanCheck:
     def __init__(self):
         self.url = 'https://proverkacheka.com/api/v1/check/get'
-        self.token = os.getenv('token')
+        self.token = os.getenv('TOKEN')
         self.last_response = None
 
     def get_json(self, qrraw: str):

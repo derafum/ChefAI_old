@@ -13,7 +13,7 @@ pip install python-dotenv
 Перед использованием модуля вы также должны добавить файл .env в корневую папку проекта и добавить в него следующие переменные среды:
 
 ```makefile
-token=YOUR_API_TOKEN
+TOKEN=YOUR_API_TOKEN
 ```
 YOUR_API_TOKEN должен быть заменен на ваш собственный токен, который можно получить на сайте https://proverkacheka.com.
 
