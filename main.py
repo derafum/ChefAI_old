@@ -5,4 +5,3 @@ if __name__ == "__main__":
     client = ScanCheck()
     check_json = client.get_json(qrraw)
     client.save_check_to_json()
-
