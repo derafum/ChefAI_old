@@ -1,10 +1,5 @@
 import requests
 import json
-import os
-
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
 class ScanCheck:
@@ -27,21 +22,28 @@ class ScanCheck:
         save_check_to_json(filename:str = "info_check.json"):
             Сохраняем данные чека в формате json
         """
-    def __init__(self):
+
+    def __init__(self, token):
         self.url = 'https://proverkacheka.com/api/v1/check/get'
-        self.token = os.getenv('TOKEN')
+        self.token = token
         self.last_response = None
 
     def get_json(self, qrraw: str) -> dict:
-        """Получаем данные чека и переводим в json"""
+        """
+
+        Args:
+            qrraw:
+
+        Returns:
+
+        """
         data = {'token': self.token,
                 'qrraw': qrraw}
-        resp = requests.post(self.url, data=data)
-        file_json = json.loads(resp.text)
-        self.last_response = file_json
-        return file_json
+        self.last_response = requests.post(self.url, data=data)
+        return json.loads(self.last_response.text)
 
-    def save_check_to_json(self, filename:str = "info_check.json"):
+    def save_check_to_json(self, filename: str = "info_check.json"):
         """Сохраняем данные чека в формате json"""
-        with open(filename, 'w') as f:
-            json.dump(self.last_response, f, ensure_ascii=False, indent=2)
+        assert self.last_response is not None, "No"
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(json.loads(self.last_response.text), f, ensure_ascii=False, indent=2)
